@@ -6,23 +6,21 @@ import './GlobalVariables';
 
 const Posts = ()=>{
   const [posts,setPosts] = useState([]);
-  const [showPosts,setShowPosts] = useState([]);
   const [addPostShow,setAddPostShow] = useState(false);
   const {handleSubmit,register} = useForm();
   const usersId = [1,2,3,4,5,6,7,8,9,10]
 
   useEffect(()=>{
-    setShowPosts(posts)
-  },[posts])
-
-  useEffect(()=>{
     fetch(global.postsUrl)
     .then((response) => response.json())
-    .then((json) => setPosts(json))
+    .then((json) => {
+      setPosts(json);
+    })
     .catch(err=>{
       alert(`${err.name} occurs! Check your internet connection`)
     })
   },[]);
+
 
   const addPostForm = ()=>{
     setAddPostShow(!addPostShow);
@@ -58,7 +56,7 @@ const Posts = ()=>{
         md:px-32 py-2 items-center md:w-200'>
         <button onClick={addPostForm} className='bg-white ml-24 hover:bg-blue-100 
           rounded-md my-2 p-1'>Add Post</button>
-        <Search showPosts={showPosts} updatePosts = {newPosts=>setShowPosts(newPosts)}/>   
+        <Search posts={posts} updatePosts = {newPosts=>setPosts(newPosts)}/>   
       </div>
 
           { (addPostShow === true)
@@ -94,7 +92,7 @@ const Posts = ()=>{
             ''
           }
 
-       {showPosts.map(post=>{
+       {posts.map(post=>{
           return <Post post={post} key={post.id}/>;
        })}
     </>     
