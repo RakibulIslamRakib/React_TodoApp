@@ -1,0 +1,1 @@
+global.postsUrl = 'https://jsonplaceholder.typicode.com/posts';
