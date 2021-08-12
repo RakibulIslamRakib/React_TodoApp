@@ -1,10 +1,10 @@
 import {useCallback,useState,useEffect} from 'react';
-import './GlobalVariables';
+import {postsApiBaseUrl} from 'utils/utilVar.js';
 
 function GetPostsData(props) {
 
   const handleChange = (value)=>{
-    fetch(global.postsUrl)
+    fetch(postsApiBaseUrl)
     .then((response) => response.json())
     .then((posts) => {
       let newPosts = posts.filter(function(post){
