@@ -1,6 +1,6 @@
 import React ,{useState,useEffect} from 'react';
 import {useForm} from 'react-hook-form';
-import './GlobalVariables';
+import {postsApiBaseUrl} from 'utils/utilVar.js';
 
 const Post = (props)=>{
   const [post,setPost] = useState({});
@@ -13,7 +13,7 @@ const Post = (props)=>{
 
   const deletPost = (e)=>{
       if(window.confirm('Are you Sure?')){
-        fetch(`${global.postsUrl}/${post.id}`, {
+        fetch(`${postsApiBaseUrl}/${post.id}`, {
           method: 'DELETE',
         })
         .then(()=>{
@@ -27,7 +27,7 @@ const Post = (props)=>{
 
   const editPost = (editFormData)=>{
     setEditPostShow(!editPostShow)
-    fetch(`https://jsonplaceholder.typicode.com/posts/${post.id}`, {
+    fetch(`${postsApiBaseUrl}/${post.id}`, {
     method: 'PUT',
     body: JSON.stringify({
     id: post.id,
