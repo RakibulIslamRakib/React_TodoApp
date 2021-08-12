@@ -2,7 +2,7 @@ import React ,{useState,useEffect} from 'react';
 import Post from './Post.js';
 import Search from './Search.js';
 import {useForm} from 'react-hook-form';
-import './GlobalVariables';
+import {postsApiBaseUrl} from 'utils/utilVar.js';
 
 const Posts = ()=>{
   const [posts,setPosts] = useState([]);
@@ -11,7 +11,7 @@ const Posts = ()=>{
   const usersId = [1,2,3,4,5,6,7,8,9,10]
 
   useEffect(()=>{
-    fetch(global.postsUrl)
+    fetch(postsApiBaseUrl)
     .then((response) => response.json())
     .then((json) => {
       setPosts(json);
